@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useAuth } from "../context/useAuth";
 
 export default function LoginForm() {
+  const { login } = useAuth();
   const [form, setForm] = useState({ username: "", password: "" });
 
   const handleChange = (e) => {
@@ -9,7 +11,7 @@ export default function LoginForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Datos enviados:", form);
+    login(form.username.trim().toLowerCase(), form.password);
   };
 
   return (

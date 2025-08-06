@@ -1,30 +1,46 @@
 import { Routes, Route } from "react-router-dom";
+
+//paginas
 import Navbar from "./components/Navbar";
+import LoginForm from "./pages/loginform";
 import Ingresos from "./pages/Ingresos";
 import Egresos from "./pages/Egresos";
 import Contactos from "./pages/Contactos";
 import MetodosPago from "./pages/MetodosPago";
 import Bancos from "./pages/Bancos";
+import TiposContacto from "./pages/Contactos";
 
 
 
+//authentication context
+import ProtectedRoute from "./context/ProtectedRoute";
+import { useAuth } from "./context/useAuth";
 
 export default function App() {
+  const { isAuthenticated } = useAuth();
+
   return (
-    <div className="min-h-screen bg-gray-100">
-      <Navbar />
+    <>
+      {isAuthenticated && <Navbar />}
       <Routes>
-        <Route path="/ingresos" element={<Ingresos />} />
-        <Route path="/egresos" element={<Egresos />} />
-        <Route path="/contactos" element={<Contactos />} />
-        <Route path="/metodos" element={<MetodosPago />} />
-        <Route path="/bancos" element={<Bancos />} />
+        <Route path="/loginform" element={<LoginForm />} />
+
+        <Route path="/ingresos" element={  <ProtectedRoute>   <Ingresos /> </ProtectedRoute> } />
+
+        <Route  path="/egresos"  element={ <ProtectedRoute>   <Egresos /> </ProtectedRoute> } />
+
+        <Route  path="/contactos" element={  <ProtectedRoute>  <Contactos /> </ProtectedRoute>  } />
+
+        <Route  path="/metodospago"  element={ <ProtectedRoute> <MetodosPago /> </ProtectedRoute> }  />
+
+        <Route  path="/bancos"  element={ <ProtectedRoute>  <Bancos />  </ProtectedRoute>  }   />
         
+        <Route  path="/tipos-contacto" element={ <ProtectedRoute> <TiposContacto />   </ProtectedRoute>  }  />
         
-        
-        <Route path="*" element={<Ingresos />} /> {/* Página por defecto */}
+
+        {/* Ruta catch-all para redirigir a login si no coincide */}
+        <Route path="*" element={<LoginForm />} />
       </Routes>
-    </div>
+    </>
   );
 }
-
