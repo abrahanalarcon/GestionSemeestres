@@ -1,4 +1,4 @@
-import { Routes, Route , useLocation} from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import PageWrapper from "./components/PageWrapper";
 //paginas
@@ -19,7 +19,7 @@ import { useAuth } from "./context/useAuth";
 
 export default function App() {
   const { isAuthenticated, loading } = useAuth();
-
+  const location = useLocation();
 
   if (loading) {
     return <Spinner />;

@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+// Aquí lo creas
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
@@ -23,7 +24,7 @@ export function AuthProvider({ children }) {
         localStorage.setItem("isAuthenticated", "true");
         setLoading(false);
         navigate("/ingresos");
-      }, 1000); // 1 segundo de spinner
+      }, 1000);
     } else {
       alert("Usuario o contraseña incorrectos");
     }
@@ -31,15 +32,14 @@ export function AuthProvider({ children }) {
 
   const logout = () => {
     setLoading(true);
-
     setTimeout(() => {
-    setIsAuthenticated(false);
-    setUsername("");
-    localStorage.removeItem("isAuthenticated");
-    localStorage.removeItem("username");
-    setLoading(false);
-    navigate("/loginform", { replace: true });
-    }, 500); 
+      setIsAuthenticated(false);
+      setUsername("");
+      localStorage.removeItem("isAuthenticated");
+      localStorage.removeItem("username");
+      setLoading(false);
+      navigate("/loginform", { replace: true });
+    }, 500);
   };
 
   return (
