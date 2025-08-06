@@ -1,19 +1,30 @@
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Ingresos from "./pages/Ingresos";
+import Egresos from "./pages/Egresos";
+import Contactos from "./pages/Contactos";
+import MetodosPago from "./pages/MetodosPago";
+import Bancos from "./pages/Bancos";
 
 
 
-function App() {
-  
 
+export default function App() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 text-center p-6">
-    <h1 className="text-4xl font-bold text-blue-600 mb-4">
-      Gestión de Semestres
-    </h1>
-    <p className="text-lg text-gray-700 max-w-md">
-      Bienvenido a la aplicación de gestión de semestres.
-    </p>
-  </div>
-  )
+    <div className="min-h-screen bg-gray-100">
+      <Navbar />
+      <Routes>
+        <Route path="/ingresos" element={<Ingresos />} />
+        <Route path="/egresos" element={<Egresos />} />
+        <Route path="/contactos" element={<Contactos />} />
+        <Route path="/metodos" element={<MetodosPago />} />
+        <Route path="/bancos" element={<Bancos />} />
+        
+        
+        
+        <Route path="*" element={<Ingresos />} /> {/* Página por defecto */}
+      </Routes>
+    </div>
+  );
 }
 
-export default App
