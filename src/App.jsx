@@ -3,7 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import PageWrapper from "./components/PageWrapper";
 //paginas
 import Navbar from "./components/Navbar";
-import LoginForm from "./pages/loginform";
+import LoginForm from "./pages/LoginForm";
 import Ingresos from "./pages/Ingresos";
 import Egresos from "./pages/Egresos";
 import Contactos from "./pages/Contactos";
